@@ -1,6 +1,10 @@
 # This is a react app could generate unique color combination and plot as a rgb dot image.  
 ## Create for EH code test
 
+## Result
+
+![alt text](src/result/canvas.png?raw=true "Generated rbg dot image")
+
 ## How to use 
 ```
 npm i
@@ -16,3 +20,4 @@ open __localhost:3000__ to view the result
   * Solution 1 - Simply use for loops to loop though all colors to generate combinations. Not ideal for time complexity.
   * Solution 2 - Use recursive function to generate color combinations in order to have better performance.  
 4. Use Canvas to plot the color combinations according to pixel coordinates. 
+
