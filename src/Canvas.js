@@ -1,6 +1,8 @@
 import { useEffect, useRef } from 'react'
 import PIXEL_CORDS from './PIXEL_CORDS'
+
 const Canvas = ({ props }) => {
+  // get the canvas element
   const canvasRef = useRef(null)
   const pixelData = props
 
@@ -11,6 +13,7 @@ const Canvas = ({ props }) => {
     const context = canvas.getContext('2d')
     if (!context) return
 
+    // plot the pixels according to the pixelData coordinates
     for (let i = 0; i < pixelData.length; i++) {
       context.fillStyle = `rgb(${pixelData[i][0]}, ${pixelData[i][1]}, ${pixelData[i][2]})`
       context.fillRect(PIXEL_CORDS[i][0], PIXEL_CORDS[i][1], 1, 1)

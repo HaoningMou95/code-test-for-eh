@@ -40,22 +40,26 @@ const PixelData = () => {
   colors.push(red)
   colors.push(green)
   colors.push(blue)
-
-  // recursive to generate all possible colors
+  // temp array, store the process
   let tmp = []
+  // recursive to generate all possible colors
   const generateColors = (colors, N, tmp, result) => {
     for (let i = 0; i < colors[N].length; i++) {
+      // N is the index of the array, colors[0] is red array, colors[0][0] is the value of the first element in red array
       tmp.push(colors[N][i])
       if (N < colors.length - 1) {
         generateColors(colors, N + 1, tmp, result)
       } else {
+        // the exit of the recursive when reached to the last element of array
         let oneResult = []
         for (let j = 0; j < colors.length; j++) {
           oneResult.push(tmp[j])
+          // keep this comment to see how recursive works
           //   console.log(j, ' ', tmp[j])
         }
         result.push(oneResult)
       }
+      // pop the last element of the temp array
       tmp.pop()
     }
   }
