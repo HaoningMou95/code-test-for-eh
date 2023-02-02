@@ -1,4 +1,5 @@
-# This is a react app could generate unique color combination and plot as a rgb dot image create for EH code test
+# This is a react app could generate unique color combination and plot as a rgb dot image.  
+## Create for EH code test
 
 ## How to use 
 ```
