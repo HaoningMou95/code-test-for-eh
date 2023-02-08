@@ -1,26 +1,13 @@
 import { useEffect, useRef } from 'react'
 
-const width = 168 // 218
-const height = 194 // 164
+const width = 100 // 168
+const height = 100 // 194
 const RandIMG = ({ props }) => {
   // get the canvas element
   const canvasRef = useRef(null)
   const pixelData = props
 
   const pixels = []
-  const Pixel = {
-    position: {
-      x: 0,
-      y: 0
-    },
-    color: {
-      r: 255,
-      g: 255,
-      b: 255
-    },
-    empty: true,
-    id: 0
-  }
 
   const getPixelIndexByCord = (x, y) => {
     let resIndex
@@ -37,10 +24,6 @@ const RandIMG = ({ props }) => {
     if (pixels[res].empty) {
       return true
     }
-  }
-
-  const isOnEdge = (x, y) => {
-    return x === 0 || x === width - 1 || y === 0 || y === height - 1
   }
 
   const getPositionNeighbors = (pixel) => {
@@ -68,11 +51,7 @@ const RandIMG = ({ props }) => {
             x: i,
             y: j
           },
-          color: {
-            r: 255,
-            g: 255,
-            b: 255
-          },
+          color: [],
           empty: true
         }
         pixels.push(pixel)
@@ -82,13 +61,6 @@ const RandIMG = ({ props }) => {
   }
 
   const plot = (context) => {
-    // find the middle point
-    // const midx = (width-1) / 2
-    // const midy = (height-1) / 2
-    // get the pixel at the middle point
-    // const midPixelIndex = getPixelIndexByCord(midx, midy)
-    // pixels[midPixelIndex].empty = false
-    // pixels[midPixelIndex].color = { r: 0, g: 0, b: 0 }
     for (let i = 0; i < pixels.length; i++) {
       context.fillStyle = `rgb(${pixels[i].color[0]}, ${pixels[i].color[1]}, ${pixels[i].color[2]})`
       context.fillRect(pixels[i]['position'].x, pixels[i]['position'].y, 1, 1)
@@ -96,15 +68,15 @@ const RandIMG = ({ props }) => {
   }
 
   const pixelTraverse = () => {
-    const midx = Math.floor((width-1) / 2)
-    const midy = Math.floor((height-1) / 2)
+    const midx = Math.floor((width - 1) / 2)
+    const midy = Math.floor((height - 1) / 2)
     let id = 0
     // get the pixel at the middle point
     const midPixelIndex = getPixelIndexByCord(midx, midy)
+    // const midPixelIndex = getPixelIndexByCord(70, 70)
     console.log('midx, midy, midPixelIndex', midx, midy, midPixelIndex)
-    pixels[midPixelIndex].empty = false 
+    pixels[midPixelIndex].empty = false
     pixels[midPixelIndex].id = id
-    const visited = new Set()
     const currentX = pixels[midPixelIndex].position.x
     const currentY = pixels[midPixelIndex].position.y
     const queue = [[currentX, currentY]]
@@ -115,10 +87,9 @@ const RandIMG = ({ props }) => {
       for (const neighbor of neighbors) {
         const neighborIndex = getPixelIndexByCord(neighbor['position'].x, neighbor['position'].y)
 
-        if (!visited.has(neighborIndex)) {
-            pixels[neighborIndex].id = ++id
-            pixels[neighborIndex].color = pixelData[id]
-          visited.add(neighborIndex)
+        if (pixels[neighborIndex].empty) {
+          pixels[neighborIndex].id = ++id
+          pixels[neighborIndex].color = pixelData[id]
           pixels[neighborIndex].empty = false
           queue.push([neighbor['position'].x, neighbor['position'].y])
         }
@@ -145,12 +116,12 @@ const RandIMG = ({ props }) => {
     //   context.fillRect(PIXEL_CORDS[i][0], PIXEL_CORDS[i][1], 1, 1)
     // }
   }, [])
-//   fillPixelsPosition()
-//   pixelTraverse()
+  //   fillPixelsPosition()
+  //   pixelTraverse()
 
   return (
     <div>
-      <canvas ref={canvasRef} width={200} height={200} />
+      <canvas ref={canvasRef} width={width} height={height} />
     </div>
   )
 }

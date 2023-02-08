@@ -1,6 +1,6 @@
 import './App.css';
 import PixelData from './PixelData'
-import Canvas from './Canvas';
+// import Canvas from './Canvas';
 import RandIMG from './RandIMG';
 
 function App() {

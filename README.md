@@ -3,7 +3,10 @@
 
 ## Result
 
-![alt text](src/result/canvas.png?raw=true "Generated rbg dot image")
+![alt text](src/result/hello_world.png?raw=true "HELLO WORLD")
+![alt text](src/result/50x50.png?raw=true "50x50")
+![alt text](src/result/100x100.png?raw=true "100x100")
+![alt text](src/result/164x194.png?raw=true "164x194")
 
 ## How to use 
 ```
